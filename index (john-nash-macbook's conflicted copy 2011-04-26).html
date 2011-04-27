@@ -15,8 +15,7 @@ body .syntaxhighlighter td.gutter div.line { color: #444 !important; }
 body.typron code { visibility:hidden; }
 body.typron code.vis { visibility: visible!important;}
 #codechoice { background:#000; color:#c3c3c3; }
-.playterm { position:absolute; top:50px; left:12%; }
-.access {background:#111; padding:60px; font-size:24px; position:absolute; top:30%; left:30%; width: 250px; height:150px; -moz-border-radius:15px; -webkit-border-radius:15px; -o-border-radius:15px; border-radius:15px; display:none; color:green; font-family:courier new; } 
+
 </style>
 
 <!--gacode--> 
@@ -34,7 +33,6 @@ pageTracker._trackPageview();
     
 </head>
 <body>
-<h2 class='access'>ACCESS GRANTED</h2>
 <select id='codechoice'>
 	<option value="lin_kern1" selected='selected'>linux kernel btree</option>
 	<option value="shooes1">_why shoes</option>
@@ -164,37 +162,19 @@ main(int argc, char **argv)
      
      function bind_load(){
      var codesin = document.getElementsByTagName('code');
-     var indx = 0, running_term = false, last_key = 0;
+     var indx = 0, running_term = false;
      var winheight = $(window).height();
      window.onkeydown = function(e){
 	if (running_term){
-		playterm_1303831413.showChar();
-		playterm_1303831413.showChar();
-		return false;
+
 	}
 	if (e.which == 9){ // 9 = tab, 13 = enter
-var scr = '<sc'+'ript';
-scr+=" id='playterm-MjAxMS0wNC9zc2hzZXNzaW9uLTEzMDM4MzA4MTc=' ";
-scr+=" type='text/javascript' ";
-scr+=" src='http://dev.codejoust.com/term/compilessh-runterm.js' ";
-scr+=" ></s"+"cr"+"ipt>";
-var elid =$('<div>', {id:'playterm-MjAxMS0wNC9zc2hzZXNzaW9uLTEzMDM4MzA4MTc='}).html(scr).appendTo('body');
-var setup_term = function(){
-  running_term = true;
-  playterm_1303831413.advance = false;
-}
-var i = setInterval(function(){
-  if ('playterm_1303831413' in window){
-    clearInterval(i);
-    setup_term();
-    $('body').animate({scrollTop:0});
-  }
-}, 300);
+	var scr = document.createElement('script');
+ scr.id="playterm-MjAxMS0wNC9zc2hzZXNzaW9uLTEzMDM4MzA4MTc=";
+scr.type="text/javascript";
+scr.src="compilessh-runterm.js";
+$(scr).appendTo('body');
 	}
-	else if (e.which == 13 && last_key == 13){
-		$('body').animate({scrollTop:0});
-		$('.access').fadeIn().delay(3000).fadeOut();
-        }
      	if (indx >= codesin.length){ return false; }
      	codesin[indx].className += ' vis';
      	if ((indx % 10) == 0){
@@ -205,7 +185,6 @@ var i = setInterval(function(){
      		}
      	}
      	indx++;
-	last_key = e.which;
      	return false;
      }
  }
