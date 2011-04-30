@@ -16,6 +16,8 @@ body.typron code { visibility:hidden; }
 body.typron code.vis { visibility: visible!important;}
 #codechoice { background:#000; color:#c3c3c3; }
 .playterm { position:absolute; top:50px; left:12%; }
+#top-cont { position:relative; width: 300px; height: 30px; }
+#fobj { position: absolute; right:0; top:0; }
 .access {background:#111; padding:60px; font-size:24px; position:absolute; top:30%; left:30%; width: 250px; height:150px; -moz-border-radius:15px; -webkit-border-radius:15px; -o-border-radius:15px; border-radius:15px; display:none; color:green; font-family:courier new; } 
 </style>
 
@@ -35,12 +37,23 @@ pageTracker._trackPageview();
 </head>
 <body>
 <h2 class='access'>ACCESS GRANTED</h2>
+<div id="top-cont">
 <select id='codechoice'>
 	<option value="lin_kern1" selected='selected'>linux kernel btree</option>
 	<option value="shooes1">_why shoes</option>
 	<option value="perl1">perl regexe</option>
 	<option value="nginx1">nginx http parse</option>
 </select>
+<div id="fobj">
+<object type="application/x-shockwave-flash"
+data="BeepInterfaceFin.swf" name="beepinterface"
+width="30" height="30">
+<param name="movie" 
+value="BeepInterfaceFin.swf" />
+</object>	
+</div>
+</div>
+
 
 <pre id='codetxt' class='syntaxhighlighter'>
 /* 
@@ -197,6 +210,9 @@ var i = setInterval(function(){
         }
      	if (indx >= codesin.length){ return false; }
      	codesin[indx].className += ' vis';
+	if ((indx % 4) == 0 && (Math.random() < 0.8)){
+		try { document.beepinterface.makeNoise(); } catch(e){}
+	}
      	if ((indx % 10) == 0){
      		if (((winheight*0.75)+$(document).scrollTop()) < $(codesin[indx]).offset().top){
      			var amt = $(codesin[indx]).offset().top - (winheight*0.4);
